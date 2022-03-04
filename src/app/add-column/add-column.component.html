@@ -1,0 +1,29 @@
+<p>add-column works!</p>
+<form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+  <label for="name"> Name: </label>
+  <input id="name" type="text" formControlName="name">
+  <br>
+  <label for="type">Type: </label>
+  <input id="type" type="text" formControlName="type">
+  <br>
+  <label for= "required" >Required: </label>
+  <input id="required" type="text" formControlName="required">
+  <br>
+  <label for= "defaultValue" >DefaultValue: </label>
+  <input id="defaultValue" type="text" formControlName="defaultValue">
+  <br>
+  <label for= "minLength" >MinLength: </label>
+  <input id="minLength" type="number" formControlName="minLength">
+  <br>
+  <label for= "maxLength" >MaxLength: </label>
+  <input id="maxLength" type="number" formControlName="maxLength">
+  <br>
+  <label for= "min" >Min: </label>
+  <input  id="min" type="number" formControlName="min">
+  <br>
+  <label for= "max" >Max: </label>
+  <input id="max" type="number" formControlName="max">
+  <br>
+  <button class="button" type="submit">Add Column</button>
+
+</form>

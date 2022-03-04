@@ -1,0 +1,78 @@
+
+<form class="example-form" [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+    <mat-error *ngIf="editForm.get('name') && editForm.get('name')?.invalid">Name is required</mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Type</mat-label>
+    <select matNativeControl required formControlName="type">
+      <option value="NUMBER">NUMBER</option>
+      <option value="STRING">STRING</option>
+      <option value="BOOLEAN">BOOLEAN</option>
+    </select>
+    <mat-error *ngIf="editForm.get('type') && editForm.get('type')?.invalid">Type is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Default Value</mat-label>
+    <input matInput formControlName="defaultValue">
+    <mat-error *ngIf="editForm.get('defaultValue') && editForm.get('defaultValue')?.invalid">Default Value is required</mat-error>
+  </mat-form-field>
+  <div *ngIf="(editForm.errors?.['defValueTypeInvalid'] || this.editForm.errors?.['rangeNumberError'] || this.editForm.errors?.['rangeStringError'])&& (editForm.touched || editForm.dirty)" class="cross-validation-error-message alert alert-danger">
+    {{defaultValueErrorMsg()}}
+  </div>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Required</mat-label>
+    <select matNativeControl required formControlName="required">
+      <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+    <mat-error *ngIf="editForm.get('required') && editForm.get('required')?.invalid">Required is required</mat-error>
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Minimum Length</mat-label>
+    <input matInput type="number" formControlName="minLength">
+  </mat-form-field>
+  <div *ngIf="editForm.errors?.['numLengthRangeInvalid'] && (editForm.touched || editForm.dirty)" class="cross-validation-error-message alert alert-danger">
+    minlength should be smaller than MaxLength
+  </div>
+
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Maximum Length</mat-label>
+    <input matInput type="number" formControlName="maxLength">
+  </mat-form-field>
+  <div *ngIf="editForm.errors?.['numLengthRangeInvalid'] && (editForm.touched || editForm.dirty)" class="cross-validation-error-message alert alert-danger">
+    minlength should be smaller than MaxLength
+  </div>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Minimum Number</mat-label>
+    <input matInput type="number" formControlName="min">
+    <mat-error *ngIf="editForm.errors?.['numrangeInvalid']">min should be less than max</mat-error>
+  </mat-form-field>
+  <div *ngIf="editForm.errors?.['numRangeInvalid'] && (editForm.touched || editForm.dirty)" class="cross-validation-error-message alert alert-danger">
+    min should be smaller than Max
+  </div>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Maximum Number</mat-label>
+    <input matInput type="number" formControlName="max">
+  </mat-form-field>
+  <div *ngIf="editForm.errors?.['numRangeInvalid'] && (editForm.touched || editForm.dirty) && !this.editForm.get('max')?.disabled" class="cross-validation-error-message alert alert-danger">
+    min should be smaller than Max
+  </div>
+  <div class="example-button-row">
+  <button [disabled] ="editForm.invalid && editForm.touched" mat-raised-button color="primary">Submit</button>
+  </div>
+
+</form>
+

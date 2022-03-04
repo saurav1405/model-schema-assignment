@@ -1,0 +1,166 @@
+
+<!--<div>-->
+<!--  <h2> All Columns of Model</h2>-->
+
+<!--  <label for="sort">Choose a sort type:</label>-->
+
+<!--  <select [(ngModel)]="sortOption" name="sort" id="sort">-->
+<!--    <option value="name">name</option>-->
+<!--    <option value="type">Type</option>-->
+<!--  </select>-->
+<!--  <button (click) = "onSort()"> sort</button>-->
+<!--<ul>-->
+<!--  <li  *ngFor = "let column of columns">-->
+<!--    <span>{{column.type}}</span> {{column.name}}-->
+<!--    <span>{{column.required}}</span>-->
+<!--      <span> {{column.defaultValue}}</span>-->
+<!--        <span>{{column.minLength}}</span>-->
+<!--          <span>{{column.maxLength}}</span>-->
+<!--            <span>{{column.min}}</span>-->
+<!--              {{column.max}}-->
+<!--    <a class="button"  [routerLink]="['/edit',column.name ]" >Edit component</a>-->
+<!--    <button (click) = "onDelete(column.name)"> Delete</button>-->
+<!--  </li>-->
+<!--</ul>-->
+<!--  <a class="button"  [routerLink]="['/add']" >Add component</a>-->
+<!--</div>-->
+<!--<router-outlet> </router-outlet>-->
+<br>
+<h2>Model-Schema</h2>
+<br>
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="search column" [formControl]="searchQuery">
+  </mat-form-field>
+
+</form>
+
+<table *ngIf="this.searchResult.length > 0" mat-table #searchTable [dataSource]="searchResult" class="mat-elevation-z8">
+
+<!--- Note that these columns can be defined in any order.
+      The actual rendered columns are set as a property on the row definition" -->
+
+<!-- Name Column -->
+<ng-container matColumnDef="name">
+  <th mat-header-cell *matHeaderCellDef> Name </th>
+  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+</ng-container>
+
+<!-- Name Column -->
+<ng-container matColumnDef="type">
+  <th mat-header-cell *matHeaderCellDef> Type </th>
+  <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+</ng-container>
+
+<!-- Weight Column -->
+<ng-container matColumnDef="required">
+  <th mat-header-cell *matHeaderCellDef> Required </th>
+  <td mat-cell *matCellDef="let element"> {{element.required}} </td>
+</ng-container>
+
+<!-- Symbol Column -->
+<ng-container matColumnDef="defaultValue">
+  <th mat-header-cell *matHeaderCellDef> Default Value </th>
+  <td mat-cell *matCellDef="let element"> {{element.defaultValue}} </td>
+</ng-container>
+
+<!--  min length-->
+<ng-container matColumnDef="minLength">
+  <th mat-header-cell *matHeaderCellDef> Minimum Length </th>
+  <td mat-cell *matCellDef="let element"> {{element.minLength}} </td>
+</ng-container>
+
+<ng-container matColumnDef="maxLength">
+  <th mat-header-cell *matHeaderCellDef> Maximum Length </th>
+  <td mat-cell *matCellDef="let element"> {{element.maxLength}} </td>
+</ng-container>
+
+<ng-container matColumnDef="min">
+  <th mat-header-cell *matHeaderCellDef> Minimum  </th>
+  <td mat-cell *matCellDef="let element"> {{element.min}} </td>
+</ng-container>
+
+<ng-container matColumnDef="max">
+  <th mat-header-cell *matHeaderCellDef> Maximum  </th>
+  <td mat-cell *matCellDef="let element"> {{element.max}} </td>
+</ng-container>
+  <tr mat-header-row *matHeaderRowDef="searchDisplayColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: searchDisplayColumns;"></tr>
+</table>
+
+<br>
+<br>
+
+
+  <select [(ngModel)]="sortOption" name="sort" id="sort">
+    <option value="name">name</option>
+    <option value="type">Type</option>
+  </select>
+  <button (click) = "onSort()"> sort</button>
+
+<table mat-table [dataSource]="columns" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef> Type </th>
+    <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="required">
+    <th mat-header-cell *matHeaderCellDef> Required </th>
+    <td mat-cell *matCellDef="let element"> {{element.required}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="defaultValue">
+    <th mat-header-cell *matHeaderCellDef> Default Value </th>
+    <td mat-cell *matCellDef="let element"> {{element.defaultValue}} </td>
+  </ng-container>
+
+<!--  min length-->
+  <ng-container matColumnDef="minLength">
+    <th mat-header-cell *matHeaderCellDef> Minimum Length </th>
+    <td mat-cell *matCellDef="let element"> {{element.minLength}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="maxLength">
+    <th mat-header-cell *matHeaderCellDef> Maximum Length </th>
+    <td mat-cell *matCellDef="let element"> {{element.maxLength}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="min">
+    <th mat-header-cell *matHeaderCellDef> Minimum  </th>
+    <td mat-cell *matCellDef="let element"> {{element.min}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="max">
+    <th mat-header-cell *matHeaderCellDef> Maximum  </th>
+    <td mat-cell *matCellDef="let element"> {{element.max}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef> Edit </th>
+    <td mat-cell *matCellDef="let element"> <a class="button"  [routerLink]="['/edit',element.name ]" >Edit component</a> </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef> Delete </th>
+    <td mat-cell *matCellDef="let element"> <button (click) = "onDelete(element.name)"> Delete</button> </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<br>
+<button mat-button color="warn"><a [routerLink]="['/add']" >Add component</a></button>

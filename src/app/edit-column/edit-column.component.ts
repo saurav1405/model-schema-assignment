@@ -103,4 +103,8 @@ export class EditColumnComponent implements OnInit {
       return "Default string length should be in range 2 - 8"
     return ""
   }
+
+  routeBack() {
+    this.router.navigate(['']);
+  }
 }

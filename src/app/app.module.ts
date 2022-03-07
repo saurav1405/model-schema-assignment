@@ -14,13 +14,25 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
+import {DisplayNullValuePipe} from "./shared/display-null-value.pipe";
+import {DisplayBooleanPipe} from "./shared/display-boolean.pipe";
+import { PrintSchemaComponent } from './print-schema/print-schema.component';
+import {DisplaySchemaPipe} from "./shared/display-schema.pipe";
+import {MatDialogModule} from "@angular/material/dialog";
+import { DeleteDialogComponent } from './model-list/delete-dialog/delete-dialog.component';
+import {MatSortModule} from '@angular/material/sort';
 
 @NgModule({
   declarations: [
     AppComponent,
     ModelListComponent,
     EditColumnComponent,
-    AddColumnComponent
+    AddColumnComponent,
+    DisplayNullValuePipe,
+    DisplayBooleanPipe,
+    PrintSchemaComponent,
+    DisplaySchemaPipe,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +44,9 @@ import {MatTableModule} from '@angular/material/table';
     MatFormFieldModule,MatSelectModule,
     MatInputModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
